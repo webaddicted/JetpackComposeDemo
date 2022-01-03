@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -55,62 +56,63 @@ class LoginActivity : ComponentActivity() {
     private fun LoginScreen() {
         val userName = remember { mutableStateOf("") }
         val password = remember { mutableStateOf("") }
-
-        Column(
-            modifier = Modifier.run {
-                fillMaxSize().padding(
-                    top = 80.dp,
-                    start = 15.dp,
-                    end = 15.dp
+        Surface(contentColor = Color.White) {
+            Column(
+                modifier = Modifier.run {
+                    fillMaxSize().padding(
+                        top = 80.dp,
+                        start = 15.dp,
+                        end = 15.dp
+                    )
+                }
+            ) {
+                Text(
+                    text = "Login In\nJetpack Compose World",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.primary,
+                    fontFamily = FontFamily.Monospace
                 )
-            }
-        ) {
-            Text(
-                text = "Login In\nJetpack Compose World",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = MaterialTheme.colors.primary,
-                fontFamily = FontFamily.Monospace
-            )
-            OutlinedTextField(
-                value = userName.value,
-                onValueChange = {
-                    userName.value = it
-                },
-                modifier = Modifier.run { fillMaxWidth() },
-                leadingIcon = {
-                    Icon(
-                        Icons.Filled.Person,
-                        contentDescription = "",
-                        tint = MaterialTheme.colors.primary
-                    )
-                },
-                label = { Text(text = "UserName") },
-                placeholder = { Text(text = "UserName") },
-                singleLine = true
-            )
-            OutlinedTextField(
-                value = password.value,
-                onValueChange = { password.value = it },
-                leadingIcon = {
-                    Icon(
-                        Icons.Filled.Lock,
-                        contentDescription = "Lock",
-                        tint = MaterialTheme.colors.primary
-                    )
-                },
-                modifier = Modifier.run { fillMaxWidth() },
-                label = { Text(text = "Password") },
-                placeholder = { Text(text = "Password") },
-                trailingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Eye") },
-                singleLine = true
+                OutlinedTextField(
+                    value = userName.value,
+                    onValueChange = {
+                        userName.value = it
+                    },
+                    modifier = Modifier.run { fillMaxWidth() },
+                    leadingIcon = {
+                        Icon(
+                            Icons.Filled.Person,
+                            contentDescription = "",
+                            tint = MaterialTheme.colors.primary
+                        )
+                    },
+                    label = { Text(text = "UserName") },
+                    placeholder = { Text(text = "UserName") },
+                    singleLine = true
+                )
+                OutlinedTextField(
+                    value = password.value,
+                    onValueChange = { password.value = it },
+                    leadingIcon = {
+                        Icon(
+                            Icons.Filled.Lock,
+                            contentDescription = "Lock",
+                            tint = MaterialTheme.colors.primary
+                        )
+                    },
+                    modifier = Modifier.run { fillMaxWidth() },
+                    label = { Text(text = "Password") },
+                    placeholder = { Text(text = "Password") },
+                    trailingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Eye") },
+                    singleLine = true
 
-            )
-            OutlinedButton(
-                onClick = { loginBtn(userName.value, password.value) },
-                modifier = Modifier.run { fillMaxWidth().padding(top = 10.dp) }) {
-                Text(text = "Login")
+                )
+                OutlinedButton(
+                    onClick = { loginBtn(userName.value, password.value) },
+                    modifier = Modifier.run { fillMaxWidth().padding(top = 10.dp) }) {
+                    Text(text = "Login")
 
+                }
             }
         }
     }

@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import com.webaddicted.jetpackcomposedemo.ui.theme.JetpackComposeDemoTheme
 
 class HomeActivity : ComponentActivity() {
@@ -40,6 +41,7 @@ class HomeActivity : ComponentActivity() {
         }
     }
 
+    @Preview
     @Composable
     private fun HomeScreen() {
         Scaffold(topBar = {
