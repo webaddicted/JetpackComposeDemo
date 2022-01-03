@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,8 +55,8 @@ class LoginActivity : ComponentActivity() {
     @Preview
     @Composable
     private fun LoginScreen() {
-        val userName = remember { mutableStateOf("") }
-        val password = remember { mutableStateOf("") }
+        val userName = remember { mutableStateOf("webaddicted") }
+        val password = remember { mutableStateOf("123") }
         Surface(contentColor = Color.White) {
             Column(
                 modifier = Modifier.run {
@@ -71,7 +72,9 @@ class LoginActivity : ComponentActivity() {
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.primary,
-                    fontFamily = FontFamily.Monospace
+                    fontFamily = FontFamily.Monospace,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
                 )
                 OutlinedTextField(
                     value = userName.value,
@@ -88,7 +91,8 @@ class LoginActivity : ComponentActivity() {
                     },
                     label = { Text(text = "UserName") },
                     placeholder = { Text(text = "UserName") },
-                    singleLine = true
+                    singleLine = true,
+                    colors = TextFieldDefaults.textFieldColors(textColor = Color.Black)
                 )
                 OutlinedTextField(
                     value = password.value,
@@ -104,12 +108,12 @@ class LoginActivity : ComponentActivity() {
                     label = { Text(text = "Password") },
                     placeholder = { Text(text = "Password") },
                     trailingIcon = { Icon(Icons.Filled.Lock, contentDescription = "Eye") },
-                    singleLine = true
-
+                    singleLine = true,
+                    colors = TextFieldDefaults.textFieldColors(textColor = Color.Black)
                 )
                 OutlinedButton(
                     onClick = { loginBtn(userName.value, password.value) },
-                    modifier = Modifier.run { fillMaxWidth().padding(top = 10.dp) }) {
+                    modifier = Modifier.run { fillMaxWidth().padding(top = 30.dp) }) {
                     Text(text = "Login")
 
                 }
