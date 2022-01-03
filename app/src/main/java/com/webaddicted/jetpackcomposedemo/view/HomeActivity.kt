@@ -87,5 +87,12 @@ class HomeActivity : ComponentActivity() {
 
         }
     }
+    @Composable
+    private fun ShowCard() {
+        Card() {
+
+
+        }
+    }
 
 }
