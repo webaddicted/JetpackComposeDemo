@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
@@ -17,14 +17,18 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.webaddicted.jetpackcomposedemo.R
 import com.webaddicted.jetpackcomposedemo.ui.theme.JetpackComposeDemoTheme
 
 class LoginActivity : ComponentActivity() {
@@ -60,13 +64,16 @@ class LoginActivity : ComponentActivity() {
         Surface(contentColor = Color.White) {
             Column(
                 modifier = Modifier.run {
-                    fillMaxSize().padding(
-                        top = 80.dp,
-                        start = 15.dp,
-                        end = 15.dp
-                    )
+                    fillMaxSize().padding(8.dp)
                 }
             ) {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Image",
+                    modifier = Modifier
+                        .padding(top=80.dp).fillMaxWidth().align(Alignment.CenterHorizontally)
+                        .clip(RoundedCornerShape(CornerSize(10.dp)))
+                )
                 Text(
                     text = "Login In\nJetpack Compose World",
                     fontSize = 18.sp,
@@ -74,14 +81,14 @@ class LoginActivity : ComponentActivity() {
                     color = MaterialTheme.colors.primary,
                     fontFamily = FontFamily.Monospace,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.padding(top = 8.dp, bottom = 20.dp).align(Alignment.CenterHorizontally)
                 )
                 OutlinedTextField(
                     value = userName.value,
                     onValueChange = {
                         userName.value = it
                     },
-                    modifier = Modifier.run { fillMaxWidth() },
+                    modifier = Modifier.run { fillMaxWidth()},
                     leadingIcon = {
                         Icon(
                             Icons.Filled.Person,
@@ -113,7 +120,9 @@ class LoginActivity : ComponentActivity() {
                 )
                 OutlinedButton(
                     onClick = { loginBtn(userName.value, password.value) },
-                    modifier = Modifier.run { fillMaxWidth().padding(top = 30.dp) }) {
+                    modifier = Modifier.run { fillMaxWidth().padding(top = 30.dp)
+
+                    }) {
                     Text(text = "Login")
 
                 }
