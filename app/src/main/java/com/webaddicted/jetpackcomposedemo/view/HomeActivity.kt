@@ -5,7 +5,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CornerSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -13,9 +19,19 @@ import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.webaddicted.jetpackcomposedemo.R
+import com.webaddicted.jetpackcomposedemo.data.CategoryBean
 import com.webaddicted.jetpackcomposedemo.ui.theme.JetpackComposeDemoTheme
+import com.webaddicted.jetpackcomposedemo.utils.DummyData
+import com.webaddicted.jetpackcomposedemo.utils.constant.ApiConstant
 
 class HomeActivity : ComponentActivity() {
     companion object {
@@ -76,21 +92,40 @@ class HomeActivity : ComponentActivity() {
                     Icon(Icons.Filled.Add, contentDescription = "Add", tint = Color.White)
                 }
             }) {
-            ShowList()
+            ShowList(DummyData.getData())
         }
     }
 
     @Composable
-    private fun ShowList() {
-        LazyColumn() {
-
-
+    private fun ShowList(data: Array<CategoryBean>) {
+        LazyColumn {
+            items(count = data.size, itemContent = { index ->
+                ShowCard(data[index])
+            })
         }
     }
-    @Composable
-    private fun ShowCard() {
-        Card() {
 
+    @Composable
+    private fun ShowCard(item: CategoryBean) {
+        Card(
+            modifier = Modifier.padding(vertical = 8.dp, horizontal = 8.dp), elevation = 2.dp,
+            shape = RoundedCornerShape(5.dp)
+        ) {
+            Row() {
+                Image(
+                    painter = painterResource(id = R.drawable.logo),
+                    contentDescription = "Image",
+                    modifier = Modifier
+                        .padding(2.dp)
+                        .align(Alignment.CenterVertically)
+                        .clip(RoundedCornerShape(CornerSize(10.dp)))
+                )
+                Column(modifier = Modifier.padding(2.dp)) {
+                    Text(text = item.name.toString(), fontWeight = FontWeight.W700)
+                    Text(text = ApiConstant.DUMMY_TXT, modifier = Modifier.padding(top = 2.dp))
+                }
+
+            }
 
         }
     }
