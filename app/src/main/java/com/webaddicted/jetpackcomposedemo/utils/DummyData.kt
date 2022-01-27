@@ -5,7 +5,7 @@ import com.webaddicted.jetpackcomposedemo.data.CategoryBean
 class DummyData {
     companion object {
         fun getData(): Array<CategoryBean> {
-            return  arrayOf(
+            return arrayOf(
                 CategoryBean(
                     "Abstract",
                     "https://img.freepik.com/free-vector/gradient-liquid-abstract-background_52683-60469.jpg?size=626&ext=jpg"

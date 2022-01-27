@@ -121,7 +121,6 @@ class LoginActivity : ComponentActivity() {
                 OutlinedButton(
                     onClick = { loginBtn(userName.value, password.value) },
                     modifier = Modifier.run { fillMaxWidth().padding(top = 30.dp)
-
                     }) {
                     Text(text = "Login")
 
