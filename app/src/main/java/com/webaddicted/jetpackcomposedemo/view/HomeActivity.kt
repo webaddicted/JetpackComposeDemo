@@ -3,6 +3,7 @@ package com.webaddicted.jetpackcomposedemo.view
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -14,7 +15,10 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.webaddicted.jetpackcomposedemo.R
+import com.webaddicted.jetpackcomposedemo.Testt
 import com.webaddicted.jetpackcomposedemo.data.CategoryBean
 import com.webaddicted.jetpackcomposedemo.ui.theme.JetpackComposeDemoTheme
 import com.webaddicted.jetpackcomposedemo.utils.DummyData
@@ -83,7 +88,7 @@ class HomeActivity : ComponentActivity() {
         },
             floatingActionButton = {
                 FloatingActionButton(
-                    onClick = { /*TODO*/ },
+                    onClick = { test() },
                     backgroundColor = MaterialTheme.colors.primary
                 ) {
                     Icon(Icons.Filled.Add, contentDescription = "Add", tint = Color.White)
@@ -125,6 +130,30 @@ class HomeActivity : ComponentActivity() {
             }
 
         }
+    }
+
+    private fun test() {
+        Testt("Test")
+        Log.d("TAG", " getSomething : ${getSomething()}")
+        Log.d("TAG", " dimsum : ${dimsum}")
+        Log.d("TAG", " dimsum : ${dimsum}")
+    }
+
+    private val dimsum by lazy {
+        Log.d("TAG", "cincinnati")
+        12
+    }
+
+    fun getSomething(): Int {
+        try {
+            throw Exception("Have a blast")
+            return 2
+        } catch (e: Exception) {
+            return 3
+        } finally {
+            return 4
+        }
+        return 5
     }
 
 }
